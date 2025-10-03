@@ -1,0 +1,16 @@
+
+.DS_Store
+.vscode/
+# Python
+__pycache__/
+*.pyc
+.venv/
+# iOS/Xcode
+DerivedData/
+*.xcworkspace/
+*.xcuserdatad/
+*.xcuserstate
+.build/
+# Terraform
+*.tfstate*
+.terraform/
