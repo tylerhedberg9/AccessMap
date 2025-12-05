@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <title>AccessMaps | Capstone Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="AccessMaps – a crowdsourced accessibility mapping platform for safer, more inclusive navigation." />
+    <meta name="description" content="AccessMaps – a community-driven accessibility mapping platform." />
 
     <style>
         :root {
-            --bg: #0b1120;
-            --bg-light: #111827;
+            --bg: #020617;
+            --bg-elevated: #020617;
             --card: #020617;
+            --card-soft: #0b1120;
             --accent: #22c55e;
-            --accent-soft: rgba(34, 197, 94, 0.12);
-            --text: #f9fafb;
+            --accent-soft: rgba(34, 197, 94, 0.15);
+            --text: #e5e7eb;
             --muted: #9ca3af;
             --border: #1f2937;
-            --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.5);
             --radius: 18px;
+            --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.65);
         }
 
         * {
@@ -27,86 +28,305 @@
         }
 
         body {
-            background: var(--bg);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                "Helvetica Neue", Arial, sans-serif;
+            background: radial-gradient(circle at top, #0f172a, #020617 60%);
             color: var(--text);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
         }
 
-        .section {
-            width: 100%;
+        .page {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 16px 72px;
         }
 
-        h2 {
-            font-size: 32px;
-            margin-bottom: 16px;
-            font-weight: 700;
+        header {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
         }
 
-        .muted-label {
+        header h1 {
+            font-size: clamp(2.4rem, 4vw, 3.1rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
             color: var(--muted);
-            font-size: 14px;
-            letter-spacing: 1px;
-            margin-left: 8px;
+            max-width: 640px;
         }
 
-        .content {
-            background: var(--card);
-            padding: 32px;
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .badge span {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+        }
+
+        .sections {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        section {
+            background: radial-gradient(circle at top left, #111827, #020617);
             border-radius: var(--radius);
-            border: 1px solid var(--border);
+            border: 1px solid rgba(148, 163, 184, 0.3);
             box-shadow: var(--shadow-soft);
+            padding: 22px 22px 24px;
         }
 
-        ul {
-            margin-left: 24px;
+        section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 6px;
+        }
+
+        section .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-left: 4px;
+        }
+
+        section p {
+            font-size: 0.98rem;
+            color: #d1d5db;
+        }
+
+        section ul {
+            margin-top: 10px;
+            padding-left: 1.1rem;
+            color: #d1d5db;
+            font-size: 0.95rem;
+        }
+
+        section ul li + li {
+            margin-top: 4px;
+        }
+
+        .pill {
+            margin-top: 16px;
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: var(--accent-soft);
+            border: 1px solid rgba(34, 197, 94, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .pill strong {
+            font-weight: 600;
+        }
+
+        .two-col {
+            display: grid;
+            gap: 18px;
+        }
+
+        @media (min-width: 830px) {
+            .two-col {
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            }
+        }
+
+        .taglist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
             margin-top: 10px;
         }
 
-        .core-question {
-            background: var(--accent-soft);
-            border-left: 4px solid var(--accent);
-            padding: 14px 18px;
-            border-radius: 10px;
-            margin-top: 25px;
+        .tag {
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: var(--muted);
+            font-size: 0.78rem;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        footer {
+            margin-top: 32px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+<div class="page">
 
-    <!-- BACKGROUND & MOTIVATION -->
-    <section class="section">
-        <h2>
-            2. Background & Motivation
-            <span class="muted-label">WHY THIS MATTERS</span>
-        </h2>
+    <!-- Hero / Title -->
+    <header>
+        <div class="badge">
+            <span></span>
+            <div>CSUCI Computer Science Capstone · Fall 2025</div>
+        </div>
 
-        <div class="content">
+        <h1>AccessMaps: Accessibility-Aware Mapping for Everyone</h1>
+        <p>
+            AccessMaps is a community-driven platform that helps people discover ramps, elevators,
+            accessible restrooms, and other key features around them. We combine crowdsourced reports
+            with a clean mobile interface to make everyday navigation more inclusive.
+        </p>
+    </header>
+
+    <main class="sections">
+
+        <!-- 1. Overview -->
+        <section>
+            <h2>1. Project Overview</h2>
+            <div class="eyebrow">What we built</div>
             <p>
-                For millions of people worldwide—wheelchair users, seniors, people with injuries, parents with strollers—route choice is about more than distance. A single missing curb cut or steep hill can make an otherwise “fast” route impossible.
+                AccessMaps consists of an iOS app backed by a FastAPI service and relational database.
+                Users can explore a map, view nearby accessible places, and submit new locations with
+                photos and an accessibility checklist (ramp, elevator, restroom, parking, automatic doors).
+            </p>
+            <div class="pill">
+                <strong>Goal:</strong> put sidewalk-level accessibility details into the hands of the people
+                who need them most, in real time.
+            </div>
+        </section>
+
+        <!-- 2. Background & Motivation (your existing card) -->
+        <section>
+            <h2>2. Background &amp; Motivation</h2>
+            <div class="eyebrow">Why this matters</div>
+
+            <p>
+                For millions of people worldwide—wheelchair users, seniors, people with injuries, parents with strollers—
+                route choice is about more than distance. A single missing curb cut or steep hill can make an otherwise
+                “fast” route impossible.
+            </p>
+            <p style="margin-top:10px;">
+                However, detailed accessibility data is typically fragmented, outdated, or completely missing from
+                standard navigation tools. City GIS teams may track some infrastructure, but conditions on the ground
+                change faster than official datasets can be updated.
             </p>
 
-            <p>
-                However, detailed accessibility data is typically fragmented, outdated, or completely missing from standard navigation tools. City GIS teams may track some infrastructure, but conditions on the ground change faster than official datasets can be updated.
-            </p>
-
-            <p><strong>AccessMaps was motivated by:</strong></p>
-
+            <p style="margin-top:10px;"><strong>AccessMaps was motivated by:</strong></p>
             <ul>
                 <li>A lack of accessibility-aware routing in mainstream map apps.</li>
                 <li>Growing interest in inclusive, human-centered urban design.</li>
                 <li>The potential of crowdsourcing to keep data fresh and localized.</li>
             </ul>
 
-            <div class="core-question">
-                <strong>Core Question:</strong>
-                Can a community-driven mapping platform provide more relevant, sidewalk-level accessibility information than existing navigation systems?
+            <div class="pill">
+                <strong>Core Question:</strong> Can a community-driven mapping platform provide more relevant,
+                sidewalk-level accessibility information than existing navigation systems?
             </div>
-        </div>
-    </section>
+        </section>
 
+        <!-- 3. System Design -->
+        <section class="two-col">
+            <div>
+                <h2>3. System Design</h2>
+                <div class="eyebrow">High-level architecture</div>
+                <p>
+                    Our system follows a classic client–server model. The iOS app communicates with a FastAPI backend
+                    via JSON over HTTPS, backed by a PostgreSQL database hosted in the cloud.
+                </p>
+                <ul>
+                    <li><strong>Frontend:</strong> SwiftUI iOS app with MapKit.</li>
+                    <li><strong>API Layer:</strong> FastAPI with typed routes for places, auth, and profiles.</li>
+                    <li><strong>Data Storage:</strong> PostgreSQL for structured data, S3 for photos.</li>
+                    <li><strong>Auth:</strong> JWT-based login with email + password.</li>
+                </ul>
+            </div>
+            <div>
+                <h2>4. Core Features</h2>
+                <div class="eyebrow">What users can do</div>
+                <ul>
+                    <li>Explore accessible places on an interactive map.</li>
+                    <li>View a list of nearby locations with key accessibility flags.</li>
+                    <li>Submit new places with photos and a checklist of features.</li>
+                    <li>Create a profile and manage account details.</li>
+                    <li>Quickly search for specific places or categories (e.g., ramps, restrooms).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. Implementation & Tech Stack -->
+        <section>
+            <h2>5. Implementation &amp; Tech Stack</h2>
+            <div class="eyebrow">Under the hood</div>
+            <p>Key technologies used in AccessMaps:</p>
+            <div class="taglist">
+                <div class="tag">SwiftUI</div>
+                <div class="tag">MapKit</div>
+                <div class="tag">FastAPI (Python)</div>
+                <div class="tag">PostgreSQL</div>
+                <div class="tag">SQLAlchemy</div>
+                <div class="tag">JWT Auth</div>
+                <div class="tag">AWS S3 (photos)</div>
+                <div class="tag">GitHub &amp; GitHub Pages</div>
+            </div>
+        </section>
+
+        <!-- 6. Evaluation & Future Work -->
+        <section>
+            <h2>6. Evaluation &amp; Future Work</h2>
+            <div class="eyebrow">What we learned & what’s next</div>
+            <p>
+                Early testing with classmates and campus users showed strong interest in a tool focused specifically
+                on accessibility, but also highlighted challenges: data completeness, verification, and incentives
+                for ongoing contributions.
+            </p>
+            <ul>
+                <li>Improve onboarding and make the submission flow even faster.</li>
+                <li>Add moderation tools and a reputation system for trusted contributors.</li>
+                <li>Integrate routing (e.g., “step-free route from A to B”).</li>
+                <li>Partner with local disability resource centers for initial data seeding.</li>
+            </ul>
+        </section>
+
+        <!-- 7. Contact -->
+        <section>
+            <h2>7. Contact &amp; Links</h2>
+            <div class="eyebrow">Learn more</div>
+            <p>
+                Want to see the code or try the app?
+            </p>
+            <ul>
+                <li>GitHub repository: <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank">GitHub – AccessMaps</a></li>
+                <li>Demo video / elevator pitch: (link to YouTube or VoiceThread here)</li>
+                <li>Email: <a href="mailto:tyler@tyler.com">tyler@tyler.com</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2025 AccessMaps · CSU Channel Islands Computer Science Capstone
+    </footer>
+</div>
 </body>
 </html>
